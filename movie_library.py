@@ -33,3 +33,31 @@ def add_movie(title, genre, release_date, actors, description, price):
        else:
             print("Movie not found!")
        return
+   
+# Search by other criteria
+    found_movies = []
+    for m_number, movie in movies.items():
+        if (title and title.lower() in movie['title'].lower()) or \
+           (actors and any(actor.lower() in [a.lower() for a in movie['actors']] for actor in actors.split(", "))) or \
+           (genre and genre.lower() == movie['genre'].lower()) or \
+           (release_date and release_date == movie['release_date']):
+            found_movies.append(m_number) 
+            
+    if found_movies:
+        print("\n--- Movies Found ---")
+        for m_number in found_movies:
+            print_movie_details(m_number)
+    else:
+        print("No movies found matching the criteria.")
+        
+def print_movie_details(movie_number):
+    """Helper function to print movie details."""
+    movie = movies[movie_number]
+    print(f"Movie Number: {movie_number}")
+    print(f"Title: {movie['title']}")
+    print(f"Genre: {movie['genre']}")
+    print(f"Release Date: {movie['release_date']}")
+    print(f"Actors: {', '.join(movie['actors'])}")
+    print(f"Description: {movie['description']}")
+    print(f"Price: ${movie['price']:.2f}")
+    print("--------------------")
