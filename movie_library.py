@@ -61,3 +61,37 @@ def print_movie_details(movie_number):
     print(f"Description: {movie['description']}")
     print(f"Price: ${movie['price']:.2f}")
     print("--------------------")
+    
+# Function to sell a movie
+def sale_movie(movie_number, copies_sold, buyer_name, buyer_gender, buyer_contact):
+    # Check if the movie exists
+    if movie_number not in movies:
+        print("Movie not found!")
+        return
+
+    # Check if the buyer already exists, otherwise register them
+    buyer_number = None
+    for b_number, buyer in buyers.items():
+        if buyer['name'] == buyer_name and buyer['contact'] == buyer_contact:
+            buyer_number = b_number
+            break
+
+    if not buyer_number:
+        # Generate a unique random buyer number
+        while True:
+            buyer_number = random.randint(1000, 9999)
+            if buyer_number not in buyers:
+                break
+        
+        buyers[buyer_number] = {
+            'name': buyer_name,
+            'gender': buyer_gender,
+            'contact': buyer_contact
+        }
+        print(f'Buyer "{buyer_name}" registered successfully with Buyer Number: {buyer_number}!')
+
+    # Generate a unique random receipt number
+    while True:
+        receipt_number = random.randint(1000, 9999)
+        if receipt_number not in sales:
+            break
