@@ -95,3 +95,18 @@ def sale_movie(movie_number, copies_sold, buyer_name, buyer_gender, buyer_contac
         receipt_number = random.randint(1000, 9999)
         if receipt_number not in sales:
             break
+        
+     # Record the sale
+    movie = movies[movie_number]
+    total_price = movie['price'] * copies_sold
+    sale_date = datetime.now().strftime('%Y-%m-%d')
+
+    sales[receipt_number] = {
+        'sale_date': sale_date,
+        'movie_number': movie_number,
+        'copies_sold': copies_sold,
+        'total_price': total_price,
+        'member_number': buyer_number
+    }
+
+    print(f'Sale recorded successfully! Receipt Number: {receipt_number}, Total Price: ${total_price:.2f}')
