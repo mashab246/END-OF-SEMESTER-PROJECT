@@ -65,8 +65,8 @@ def print_movie_details(movie_number):
 # Function to sell a movie
 def buy_movie(movie_number, copies_sold, buyer_name, buyer_gender, buyer_contact):
     # Check if the movie exists
-    if movie_number not in movies:
-        print("Movie not found!")
+    if movie_number  in movies:
+        print("Movie found!")
         return
 
     # Check if the buyer already exists, otherwise register them
