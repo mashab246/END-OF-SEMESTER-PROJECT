@@ -186,7 +186,7 @@ def main_menu():
                 buyer_name = input("Enter Buyer Name: ")
                 buyer_gender = input("Enter Buyer Gender: ")
                 buyer_contact = input("Enter Buyer Contact: ")
-                buy_movie(movie_number, copies_sold, buyer_name, buyer_gender, buyer_contact)
+                buy_movie(movie_number, copies_bought, buyer_name, buyer_gender, buyer_contact)
             except ValueError:
                 print("Invalid input! Please try again.")
 
