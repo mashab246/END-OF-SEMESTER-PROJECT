@@ -133,3 +133,26 @@ def generate_receipt(receipt_number):
     print(f"Total Price: ${sale['total_price']:.2f}")
     print(f"Buyer Name: {buyer['name']}")
     print("----------------\n")
+    
+# Main menu
+def main_menu():
+    while True:
+        print("\n--- Movie Library System ---")
+        print("1. Add Movie")
+        print("2. Search Movie")
+        print("3. Sell Movie")
+        print("4. Exit")
+
+        choice = input("Select an option: ")
+
+        if choice == '1':
+            try:
+                title = input("Enter Title: ")
+                genre = input("Enter Genre: ")
+                release_date = input("Enter Release Date (YYYY-MM-DD): ")
+                actors = input("Enter Actors (comma separated): ")
+                description = input("Enter Description: ")
+                price = int(input("Enter Price: "))
+                add_movie(title, genre, release_date, actors, description, price)
+            except ValueError:
+                print("Invalid input! Please try again.")
