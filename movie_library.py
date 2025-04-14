@@ -110,3 +110,26 @@ def sale_movie(movie_number, copies_sold, buyer_name, buyer_gender, buyer_contac
     }
 
     print(f'Sale recorded successfully! Receipt Number: {receipt_number}, Total Price: ${total_price:.2f}')
+    
+    
+    # Generate and display the receipt immediately
+    generate_receipt(receipt_number)
+
+# Function to generate a receipt
+def generate_receipt(receipt_number):
+    if receipt_number not in sales:
+        print("Receipt not found!")
+        return
+
+    sale = sales[receipt_number]
+    movie = movies[sale['movie_number']]
+    buyer = buyers[sale['member_number']]
+
+    print("\n--- Receipt ---")
+    print(f"Receipt Number: {receipt_number}")
+    print(f"Sale Date: {sale['sale_date']}")
+    print(f"Movie Title: {movie['title']}")
+    print(f"Copies Sold: {sale['copies_sold']}")
+    print(f"Total Price: ${sale['total_price']:.2f}")
+    print(f"Buyer Name: {buyer['name']}")
+    print("----------------\n")
