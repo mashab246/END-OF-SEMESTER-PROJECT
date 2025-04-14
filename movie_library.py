@@ -24,9 +24,9 @@ def add_movie(title, genre, release_date, actors, description, price):
     }
     print(f'Movie "{title}" added successfully with Movie Number: {movie_number}!')
     
-    def search_and_display_movie(movie_number=None, title=None, actors=None, genre=None, release_date=None):
+def search_and_display_movie(movie_number=None, title=None, actors=None, genre=None, release_date=None):
     # Search by movie number
-     if movie_number:
+    if movie_number:
        if movie_number in movies:
            print("\n--- Movie Found ---")
            print_movie_details(movie_number)
@@ -156,3 +156,49 @@ def main_menu():
                 add_movie(title, genre, release_date, actors, description, price)
             except ValueError:
                 print("Invalid input! Please try again.")
+                
+              
+        elif choice == '2':
+            print("\n--- Search Movie ---")
+            search_type = input("Search by (1) Movie Number, (2) Title, (3) Actors, (4) Genre, (5) Release Date: ")
+            if search_type == '1':
+                movie_number = input("Enter Movie Number: ")
+                search_and_display_movie(movie_number=movie_number)
+            elif search_type == '2':
+                title = input("Enter Title: ")
+                search_and_display_movie(title=title)
+            elif search_type == '3':
+                actors = input("Enter Actors (comma separated): ")
+                search_and_display_movie(actors=actors)
+            elif search_type == '4':
+                genre = input("Enter Genre: ")
+                search_and_display_movie(genre=genre)
+            elif search_type == '5':
+                release_date = input("Enter Release Date (YYYY-MM-DD): ")
+                search_and_display_movie(release_date=release_date)
+            else:
+                print("Invalid search option!")
+                
+        elif choice == '3':
+            try:
+                movie_number = int(input("Enter Movie Number: "))
+                copies_sold = int(input("Enter Copies Sold: "))
+                buyer_name = input("Enter Buyer Name: ")
+                buyer_gender = input("Enter Buyer Gender: ")
+                buyer_contact = input("Enter Buyer Contact: ")
+                sale_movie(movie_number, copies_sold, buyer_name, buyer_gender, buyer_contact)
+            except ValueError:
+                print("Invalid input! Please try again.")
+
+        elif choice == '4':
+            confirm = input("Are you sure you want to exit? (yes/no): ").lower()
+            if confirm == 'yes':
+                print("THANK YOU FOR WORKING WITH US.")
+                break
+            
+        else:
+            print("Invalid option. Please try again.")
+
+# Run the main menu
+if __name__ == "__main__":
+    main_menu()
